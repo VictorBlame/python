@@ -1,0 +1,225 @@
+Current configuration : 4783 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Anne
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2668327680
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2668327680
+ revocation-check none
+ rsakeypair TP-self-signed-2668327680
+!
+!
+crypto pki certificate chain TP-self-signed-2668327680
+ certificate self-signed 01
+  3082023D 308201A6 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32363638 33323736 3830301E 170D3933 30333031 30303031
+  30325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 36363833
+  32373638 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100B734 1DFC480A 39DF7601 85DC9B3A DEAD8D69 A6BE80F0 925AC079 8C0F0B4B
+  174B6C5D 3DD926AD 74728113 2DE39DC7 A765467D A762669B 9AE17803 B97BCE9A
+  386B2220 3FF7AFB5 FA74AD72 1ECFBFF4 5AE0C0D1 78DFE39C 81F4873C 16B93412
+  896F7E94 577D3596 9F37D9F9 74832FCF 4CC07F03 C2B76E3F DDC451E7 A798D7C9
+  B0A30203 010001A3 65306330 0F060355 1D130101 FF040530 030101FF 30100603
+  551D1104 09300782 05416E6E 652E301F 0603551D 23041830 16801454 BA2619FB
+  84EF1F2D A294D791 B31CD216 CE3B2030 1D060355 1D0E0416 041454BA 2619FB84
+  EF1F2DA2 94D791B3 1CD216CE 3B20300D 06092A86 4886F70D 01010405 00038181
+  004C3A7E 36089D97 0C6807AE 28EEB595 9131B792 FCAD963A C6AC6B53 9F4D0607
+  24BDD381 9B4C3633 32556ABD 1B5F681D 96A89C26 DE4D4F6B 7F5B4CF8 AB6CACDB
+  453A3F19 540A83B5 4C383BAB 0589EB41 31F74B48 B76187CB 84D440A5 D0BC584D
+  6FB6018A 34A22FCB C3E17C00 DBFFE5B8 DBF48717 1169D49A 710D6F8F A158FD57 16
+  quit
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+spanning-tree vlan 10,20 priority 24576
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/5
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/6
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/7
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/8
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/9
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/10
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/11
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/12
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/13
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/14
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/15
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/16
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/17
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/18
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/19
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/20
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/21
+ switchport mode trunk
+!
+interface FastEthernet0/22
+ switchport mode trunk
+!
+interface FastEthernet0/23
+ switchport mode trunk
+!
+interface FastEthernet0/24
+ switchport mode trunk
+!
+interface FastEthernet0/25
+!
+interface FastEthernet0/26
+!
+interface FastEthernet0/27
+!
+interface FastEthernet0/28
+!
+interface FastEthernet0/29
+!
+interface FastEthernet0/30
+!
+interface FastEthernet0/31
+!
+interface FastEthernet0/32
+!
+interface FastEthernet0/33
+!
+interface FastEthernet0/34
+!
+interface FastEthernet0/35
+!
+interface FastEthernet0/36
+!
+interface FastEthernet0/37
+!
+interface FastEthernet0/38
+!
+interface FastEthernet0/39
+!
+interface FastEthernet0/40
+!
+interface FastEthernet0/41
+!
+interface FastEthernet0/42
+!
+interface FastEthernet0/43
+!
+interface FastEthernet0/44
+!
+interface FastEthernet0/45
+!
+interface FastEthernet0/46
+!
+interface FastEthernet0/47
+!
+interface FastEthernet0/48
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+ip http server
+ip http secure-server
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end

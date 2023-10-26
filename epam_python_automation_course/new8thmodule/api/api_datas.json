@@ -1,0 +1,11 @@
+{
+   "get_all_employees":"http://dummy.restapiexample.com/api/v1/employees",
+   "post_create_employee":"http://dummy.restapiexample.com/api/v1/create",
+   "delete_employee":"http://dummy.restapiexample.com/api/v1/delete/",
+   "employee_name":"Victor Blame",
+   "age":26,
+   "salary":5000,
+   "headers":{
+      "User-Agent":"Roli-EPAM"
+   }
+}

@@ -1,0 +1,128 @@
+Current configuration : 2020 bytes
+!
+! Last configuration change at 11:49:00 UTC Wed Dec 4 2019
+! NVRAM config last updated at 11:49:03 UTC Wed Dec 4 2019
+! NVRAM config last updated at 11:49:03 UTC Wed Dec 4 2019
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Budapest
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+no ipv6 cef
+ip source-route
+ip cef
+!
+!
+!
+!
+ip dhcp pool worker
+ network 192.168.3.16 255.255.255.240
+ default-router 192.168.3.17
+ dns-server 1.1.1.1
+!
+ip dhcp pool leader
+ network 192.168.3.32 255.255.255.240
+ default-router 192.168.3.33
+ dns-server 1.1.1.1
+!
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki token default removal timeout 0
+!
+!
+license udi pid CISCO2911/K9 sn FCZ153920VB
+!
+!
+!
+!
+!
+!
+!
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 192.168.3.49 255.255.255.240
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address 192.168.3.1 255.255.255.240
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2.10
+ description worker vlan
+ encapsulation dot1Q 10
+ ip address 192.168.3.17 255.255.255.240
+!
+interface GigabitEthernet0/2.20
+ description leader vlan
+ encapsulation dot1Q 20
+ ip address 192.168.3.33 255.255.255.240
+!
+interface Serial0/0/0
+ no ip address
+ shutdown
+ no fair-queue
+ clock rate 2000000
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+router rip
+ version 2
+ network 192.168.3.0
+ no auto-summary
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end

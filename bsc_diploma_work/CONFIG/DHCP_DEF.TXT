@@ -1,0 +1,17 @@
+Budapest#sh ip dhcp binding
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+192.168.3.18        0100.270e.263b.31       Dec 05 2019 09:39 AM    Automatic
+192.168.3.19        0100.270e.2636.1b       Dec 05 2019 09:40 AM    Automatic
+192.168.3.20        0100.270e.2636.20       Dec 05 2019 09:41 AM    Automatic
+192.168.3.21        0100.270e.2636.25       Dec 05 2019 09:42 AM    Automatic
+192.168.3.22        0194.de80.3bb8.5d       Dec 05 2019 12:25 PM    Automatic
+192.168.3.23        0150.b7c3.907e.1e       Dec 05 2019 09:54 AM    Automatic
+192.168.3.24        50b7.c390.7e1e          Dec 05 2019 12:11 PM    Automatic
+192.168.3.34        0100.270e.263b.2c       Dec 05 2019 11:48 AM    Automatic
+192.168.3.35        0100.270e.3012.37       Dec 05 2019 11:46 AM    Automatic
+192.168.3.36        0100.270e.3012.31       Dec 05 2019 11:48 AM    Automatic
+192.168.3.37        0100.270e.3012.35       Dec 05 2019 09:41 AM    Automatic
+192.168.3.38        0100.270e.2636.2f       Dec 05 2019 09:43 AM    Automatic

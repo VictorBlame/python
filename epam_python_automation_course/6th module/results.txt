@@ -1,0 +1,59 @@
+1
+
+{
+    "status": "success",
+    "data": {
+        "employee_name": "Victor Blame",
+        "employee_salary": "6000",
+        "employee_age": "26",
+        "id": 298
+    },
+    "message": "Successfully! Record has been added."
+}
+
+
+2
+
+{
+    "status": "success",
+    "data": {
+        "id": 24,
+        "employee_name": "Doris Wilder",
+        "employee_salary": 85600,
+        "employee_age": 23,
+        "profile_image": ""
+    },
+    "message": "Successfully! Record has been fetched."
+}
+
+
+3
+
+
+{
+    "status": "success",
+    "data": {
+        "employee_salary": "5000"
+    },
+    "message": "Successfully! Record has been updated."
+}
+
+
+5
+
+{
+    "status": "success",
+    "data": {
+        "employee_name": "Doris Wilder",
+        "id": 517
+    },
+    "message": "Successfully! Record has been added."
+}
+
+6
+
+{
+    "status": "success",
+    "data": "517",
+    "message": "Successfully! Record has been deleted"
+}

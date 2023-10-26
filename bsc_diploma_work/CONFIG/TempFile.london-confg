@@ -1,0 +1,117 @@
+
+!
+! Last configuration change at 11:25:45 UTC Wed Dec 4 2019
+! NVRAM config last updated at 11:21:00 UTC Wed Dec 4 2019
+! NVRAM config last updated at 11:21:00 UTC Wed Dec 4 2019
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname London
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+no ipv6 cef
+ip source-route
+ip cef
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+crypto pki token default removal timeout 0
+!
+!
+license udi pid CISCO2911/K9 sn FCZ153920V9
+!
+!
+!
+!
+!
+!
+!
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 192.168.3.50 255.255.255.240
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ ip address dhcp
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+!
+interface Serial0/0/0
+ no ip address
+ shutdown
+ no fair-queue
+ clock rate 2000000
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+router rip
+ version 2
+ network 192.168.3.0
+ no auto-summary
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip nat inside source list 1 interface GigabitEthernet0/2 overload
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/2
+ip route 0.0.0.0 0.0.0.0 192.168.214.1 254
+!
+access-list 1 permit 192.168.3.32 0.0.0.15
+access-list 1 permit 192.168.3.48 0.0.0.15
+access-list 1 deny   any
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end

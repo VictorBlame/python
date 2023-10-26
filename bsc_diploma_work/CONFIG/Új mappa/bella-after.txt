@@ -1,0 +1,266 @@
+Current configuration : 7523 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Bella
+!
+boot-start-marker
+boot-end-marker
+!
+enable password cisco
+!
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1223127552
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1223127552
+ revocation-check none
+ rsakeypair TP-self-signed-1223127552
+!
+!
+crypto pki certificate chain TP-self-signed-1223127552
+ certificate self-signed 01
+  3082023E 308201A7 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31323233 31323735 3532301E 170D3933 30333031 30303030
+  35385A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 32323331
+  32373535 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100B915 2A860FBE 2217A530 35014F77 AE743825 91F7C38A 5666DB6E DFF88F32
+  12F1C482 83E82A7A 23252024 7A1C1800 AD612F26 58CC19FD 416F4F30 22AA12A7
+  0417044A 38055781 E54924C3 23771BCE CB1F719C 3EEC8000 3363868F DD500867
+  9147E614 FFCD3E61 C188F508 9AF3B9E6 6D313969 A7C18D8C 94FDC160 FC358E42
+  FED10203 010001A3 66306430 0F060355 1D130101 FF040530 030101FF 30110603
+  551D1104 0A300882 0642656C 6C612E30 1F060355 1D230418 30168014 26AFFFB5
+  A168BCA3 7746BD1D 4AF26AB4 C0A275BA 301D0603 551D0E04 16041426 AFFFB5A1
+  68BCA377 46BD1D4A F26AB4C0 A275BA30 0D06092A 864886F7 0D010104 05000381
+  81009085 9EA26175 C27DBD25 8AF70CF3 F7A2508E 54A665BB F46E0EE2 6F607054
+  113838AB 768B2EA3 F8309E49 4950EBE8 2CCE9940 D63141F2 BF2C3A41 A1489C08
+  B70A00F0 03C29363 3F84F696 E5E3AEA4 7D57896F BB5800BF A927EE85 B3005261
+  3476FB0A 8B0FEFD2 D5A999CB 3A28C708 ACC849C7 B351D0F9 6B44D4D2 1328D4B3 BEF9
+  quit
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+spanning-tree vlan 10,20 priority 24576
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+ switchport port-security mac-address sticky 0027.0e26.361b
+!
+interface FastEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+ switchport port-security mac-address sticky 0027.0e26.3b31
+!
+interface FastEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/5
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/6
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/7
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/8
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/9
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/10
+ switchport access vlan 10
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/11
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+ switchport port-security mac-address sticky 0027.0e26.3b2c
+!
+interface FastEthernet0/12
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/13
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+ switchport port-security mac-address sticky 0027.0e26.362f
+!
+interface FastEthernet0/14
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/15
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/16
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/17
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/18
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/19
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/21
+ switchport mode trunk
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/22
+ switchport mode trunk
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface FastEthernet0/23
+ switchport mode trunk
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+ switchport port-security mac-address sticky 00a0.4510.dbdf
+!
+interface FastEthernet0/24
+ switchport mode trunk
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security violation protect
+ switchport port-security mac-address sticky
+!
+interface GigabitEthernet0/1
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 192.168.3.131 255.255.255.240
+ no ip route-cache
+!
+ip default-gateway 192.168.3.129
+ip http server
+ip http secure-server
+!
+control-plane
+!
+!
+line con 0
+line vty 0
+ password cisco
+ login
+line vty 1 4
+ login
+line vty 5 15
+ login
+!
+!
+monitor session 1 source interface Fa0/1 - 2 , Fa0/11
+monitor session 1 destination interface Fa0/12
+end
