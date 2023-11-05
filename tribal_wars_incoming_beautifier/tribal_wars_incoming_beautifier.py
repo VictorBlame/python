@@ -92,42 +92,66 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
 root = tk.Tk()
 root.title("Bejövő átalakító - készítette: Say Hi")
 
-input_label = tk.Label(root, text="Bejövők:")
-input_label.grid(row=0, column=0, columnspan=5)
+# Create a grid layout with row and column weights
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
 
+# Input Label
+input_label = tk.Label(root, text="Bejövők:")
+input_label.grid(row=0, column=0, columnspan=5, sticky="nsew")
+
+# Input Textbox
 input_textbox = tk.Text(root, height=10, width=120)
-input_textbox.grid(row=1, column=0, columnspan=5)
+input_textbox.grid(row=1, column=0, columnspan=5, sticky="nsew")
+
+# Checkboxes
+checkbox_frame = tk.Frame(root)
+checkbox_frame.grid(row=2, column=0, columnspan=5, sticky="nsew")
+checkbox_frame.grid_columnconfigure(0, weight=1)  # Column 0 expands with window
+checkbox_frame.grid_columnconfigure(1, weight=1)  # Column 1 expands with window
+checkbox_frame.grid_columnconfigure(2, weight=1)  # Column 2 expands with window
+checkbox_frame.grid_columnconfigure(3, weight=1)  # Column 3 expands with window
+checkbox_frame.grid_columnconfigure(4, weight=1)  # Column 4 expands with window
 
 wall_checkbox_var = tk.BooleanVar(value=True)
-wall_checkbox = tk.Checkbutton(root, text="Fal", variable=wall_checkbox_var)
-wall_checkbox.grid(row=2, column=0)
+wall_checkbox = tk.Checkbutton(checkbox_frame, text="Fal", variable=wall_checkbox_var)
+wall_checkbox.grid(row=0, column=0)
 
 arrive_checkbox_var = tk.BooleanVar(value=True)
-arrive_checkbox = tk.Checkbutton(root, text="Érkezés ideje", variable=arrive_checkbox_var)
-arrive_checkbox.grid(row=2, column=1)
+arrive_checkbox = tk.Checkbutton(checkbox_frame, text="Érkezés ideje", variable=arrive_checkbox_var)
+arrive_checkbox.grid(row=0, column=1)
 
 attack_checkbox_var = tk.BooleanVar(value=True)
-attack_checkbox = tk.Checkbutton(root, text="Támadás db", variable=attack_checkbox_var)
-attack_checkbox.grid(row=2, column=2)
+attack_checkbox = tk.Checkbutton(checkbox_frame, text="Támadás db", variable=attack_checkbox_var)
+attack_checkbox.grid(row=0, column=2)
 
 noble_checkbox_var = tk.BooleanVar(value=True)
-noble_checkbox = tk.Checkbutton(root, text="Nemes db", variable=noble_checkbox_var)
-noble_checkbox.grid(row=2, column=3)
+noble_checkbox = tk.Checkbutton(checkbox_frame, text="Nemes db", variable=noble_checkbox_var)
+noble_checkbox.grid(row=0, column=3)
 
 loyalty_checkbox_var = tk.BooleanVar(value=True)
-loyalty_checkbox = tk.Checkbutton(root, text="Hűség", variable=loyalty_checkbox_var)
-loyalty_checkbox.grid(row=2, column=4)
+loyalty_checkbox = tk.Checkbutton(checkbox_frame, text="Hűség", variable=loyalty_checkbox_var)
+loyalty_checkbox.grid(row=0, column=4)
 
+# Process Button
 process_button = tk.Button(root, text="Átalakítás", command=process_input)
 process_button.grid(row=3, column=0, columnspan=5)
 
+# Output Label
 output_label = tk.Label(root, text="Formázott bejövők:")
-output_label.grid(row=4, column=0, columnspan=5)
+output_label.grid(row=4, column=0, columnspan=5, sticky="nsew")
 
+# Output Textbox
 output_textbox = tk.Text(root, height=10, width=120)
-output_textbox.grid(row=5, column=0, columnspan=5)
+output_textbox.grid(row=5, column=0, columnspan=5, sticky="nsew")
 
+# Status Label
 status_label = tk.Label(root, text="", bg='#fff', fg='#f00')
-status_label.grid(row=6, column=0, columnspan=5)
+status_label.grid(row=6, column=0, columnspan=5, sticky="nsew")
+
+# Make rows and columns expand as the window is resized
+for i in range(5):
+    root.grid_rowconfigure(i, weight=1)
+    root.grid_columnconfigure(i, weight=1)
 
 root.mainloop()
