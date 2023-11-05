@@ -52,7 +52,7 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
                 instance_info.append(line)
                 if line.startswith("[command]attack[/command] FN"):
                     noble_count += 1
-                if line.startswith("[command]attack[/command]"):
+                if line.startswith("[command]attack"):
                     attack_count += 1
                     arrive = line.split("ideje: ")
                     if len(arrive) > 1:
@@ -90,44 +90,44 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
 
 
 root = tk.Tk()
-root.title("Bejövő átalakító")
+root.title("Bejövő átalakító - készítette: Say Hi")
 
 input_label = tk.Label(root, text="Bejövők:")
-input_label.pack()
+input_label.grid(row=0, column=0, columnspan=5)
 
 input_textbox = tk.Text(root, height=10, width=120)
-input_textbox.pack()
+input_textbox.grid(row=1, column=0, columnspan=5)
 
 wall_checkbox_var = tk.BooleanVar(value=True)
 wall_checkbox = tk.Checkbutton(root, text="Fal", variable=wall_checkbox_var)
-wall_checkbox.pack()
+wall_checkbox.grid(row=2, column=0)
 
 arrive_checkbox_var = tk.BooleanVar(value=True)
 arrive_checkbox = tk.Checkbutton(root, text="Érkezés ideje", variable=arrive_checkbox_var)
-arrive_checkbox.pack()
+arrive_checkbox.grid(row=2, column=1)
 
 attack_checkbox_var = tk.BooleanVar(value=True)
 attack_checkbox = tk.Checkbutton(root, text="Támadás db", variable=attack_checkbox_var)
-attack_checkbox.pack()
+attack_checkbox.grid(row=2, column=2)
 
 noble_checkbox_var = tk.BooleanVar(value=True)
 noble_checkbox = tk.Checkbutton(root, text="Nemes db", variable=noble_checkbox_var)
-noble_checkbox.pack()
+noble_checkbox.grid(row=2, column=3)
 
 loyalty_checkbox_var = tk.BooleanVar(value=True)
 loyalty_checkbox = tk.Checkbutton(root, text="Hűség", variable=loyalty_checkbox_var)
-loyalty_checkbox.pack()
+loyalty_checkbox.grid(row=2, column=4)
 
 process_button = tk.Button(root, text="Átalakítás", command=process_input)
-process_button.pack()
+process_button.grid(row=3, column=0, columnspan=5)
 
 output_label = tk.Label(root, text="Formázott bejövők:")
-output_label.pack()
+output_label.grid(row=4, column=0, columnspan=5)
 
 output_textbox = tk.Text(root, height=10, width=120)
-output_textbox.pack()
+output_textbox.grid(row=5, column=0, columnspan=5)
 
 status_label = tk.Label(root, text="", bg='#fff', fg='#f00')
-status_label.pack()
+status_label.grid(row=6, column=0, columnspan=5)
 
 root.mainloop()
