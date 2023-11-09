@@ -46,7 +46,7 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
             attack_count = 0
             noble_count = 0
             instance_info = []
-            arrival_time = "N/A"
+            arrival_times = []
 
             for line in instance:
                 instance_info.append(line)
@@ -56,11 +56,12 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
                     attack_count += 1
                     arrive = line.split("ideje: ")
                     if len(arrive) > 1:
-                        arrival_time = arrive[1]
+                        arrival_times.append(arrive[1])
 
             village_line = instance_info[0].replace('[b]Falu:[/b] ', '')
             wall = instance_info[1]
             loyalty = instance_info[2]
+            arrival_time = arrival_times[0]
 
             output = f"{village_line}"
 
