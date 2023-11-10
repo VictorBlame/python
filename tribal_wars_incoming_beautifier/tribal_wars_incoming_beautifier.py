@@ -59,8 +59,8 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
                         arrival_times.append(arrive[1])
 
             village_line = instance_info[0].replace('[b]Falu:[/b] ', '')
-            wall = instance_info[1]
-            loyalty = instance_info[2]
+            wall = instance_info[1].replace('Falszint', 'Fal')
+            loyalty = instance_info[2].replace('[b]Hűség:[/b] ', '') + '%'
             arrival_time = arrival_times[0]
 
             output = f"{village_line}"
@@ -69,7 +69,7 @@ def process_instances(input_text, show_arrival, show_attack, show_wall, show_nob
                 output += f" | {wall}"
 
             if show_loyalty:
-                output += f" | {loyalty}"
+                output += f" | [b]{loyalty}[/b]"
 
             if show_arrival:
                 output += f" | [b]1. támadás: [color=#ff0000]{arrival_time}[/color][/b]"
