@@ -5,32 +5,94 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
-# Set the locale for formatting numbers with thousands separators
 locale.setlocale(locale.LC_ALL, '')
 RESULT_FOLDER = 'results'
 
 base_urls = dict(
-    hu=f'https://www.klanhaboru.hu/archive/hu',
-    en=f'https://www.tribalwars.net/en-dk/archive/en',
-    de=f'https://www.die-staemme.de/archive/de',
-    ae=f'https://www.tribalwars.ae/archive/ae',
-    cz=f'https://www.divokekmeny.cz/archive/cs',
-    nl=f'https://www.tribalwars.nl/archive/nl',
-    uk=f'https://www.tribalwars.co.uk/archive/uk',
-    us=f'https://www.tribalwars.us/archive/us',
-    fr=f'https://www.guerretribale.fr/archive/fr',
-    gr=f'https://www.fyletikesmaxes.gr/archive/gr',
-    it=f'https://www.tribals.it/archive/it',
-    pl=f'https://www.plemiona.pl/archive/pl',
-    br=f'https://www.tribalwars.com.br/archive/br',
-    pt=f'https://www.tribalwars.com.pt/archive/pt',
-    ro=f'https://www.triburile.ro/archive/ro',
-    ru=f'https://www.voynaplemyon.com/ru-ru/archive/ru',
-    sk=f'https://www.divoke-kmene.sk/archive/sk',
-    es=f'https://www.guerrastribales.es/archive/es',
-    ch=f'https://www.staemme.ch/archive/ch',
-    tr=f'https://www.klanlar.org/archive/tr',
-    ua=f'https://www.voynaplemyon.com/uk-ua/archive/ru'
+    hu=dict(
+        archive=f'https://www.klanhaboru.hu/archive/hu',
+        hof=f'https://www.klanhaboru.hu/page/hall-of-fame'
+    ),
+    en=dict(
+        archive=f'https://www.tribalwars.net/en-dk/archive/en',
+        hof=f'https://www.tribalwars.net/en-dk/page/hall-of-fame'
+    ),
+    de=dict(
+        archive=f'https://www.die-staemme.de/archive/de',
+        hof=f'https://www.die-staemme.de/page/hall-of-fame'
+    ),
+    ae=dict(
+        archive=f'https://www.tribalwars.ae/archive/ae',
+        hof=f'https://www.tribalwars.ae/page/hall-of-fame'
+    ),
+    cz=dict(
+        archive=f'https://www.divokekmeny.cz/archive/cs',
+        hof=f'https://www.divokekmeny.cz/page/hall-of-fame'
+    ),
+    nl=dict(
+        archive=f'https://www.tribalwars.nl/archive/nl',
+        hof=f'https://www.tribalwars.nl/page/hall-of-fame'
+    ),
+    uk=dict(
+        archive=f'https://www.tribalwars.co.uk/archive/uk',
+        hof=f'https://www.tribalwars.co.uk/page/hall-of-fame'
+    ),
+    us=dict(
+        archive=f'https://www.tribalwars.us/archive/us',
+        hof=f'https://www.tribalwars.us/page/hall-of-fame'
+    ),
+    fr=dict(
+        archive=f'https://www.guerretribale.fr/archive/fr',
+        hof=f'https://www.guerretribale.fr/page/hall-of-fame'
+    ),
+    gr=dict(
+        archive=f'https://www.fyletikesmaxes.gr/archive/gr',
+        hof=f'https://www.fyletikesmaxes.gr/page/hall-of-fame'
+    ),
+    it=dict(
+        archive=f'https://www.tribals.it/archive/it',
+        hof=f'https://www.tribals.it/page/hall-of-fame'
+    ),
+    pl=dict(
+        archive=f'https://www.plemiona.pl/archive/pl',
+        hof=f'https://www.plemiona.pl/page/hall-of-fame'
+    ),
+    br=dict(
+        archive=f'https://www.tribalwars.com.br/archive/br',
+        hof=f'https://www.tribalwars.com.br/page/hall-of-fame'
+    ),
+    pt=dict(
+        archive=f'https://www.tribalwars.com.pt/archive/pt',
+        hof=f'https://www.tribalwars.com.pt/page/hall-of-fame'
+    ),
+    ro=dict(
+        archive='https://www.triburile.ro/archive/ro',
+        hof=f'https://www.triburile.ro/page/hall-of-fame'
+    ),
+    ru=dict(
+        archive=f'https://www.voynaplemyon.com/ru-ru/archive/ru',
+        hof=f'https://www.voynaplemyon.com/ru-ru/page/hall-of-fame'
+    ),
+    sk=dict(
+        archive=f'https://www.divoke-kmene.sk/archive/sk',
+        hof=f'https://www.divoke-kmene.sk/page/hall-of-fame'
+    ),
+    es=dict(
+        archive=f'https://www.guerrastribales.es/archive/es',
+        hof=f'https://www.guerrastribales.es/page/hall-of-fame'
+    ),
+    ch=dict(
+        archive=f'https://www.staemme.ch/archive/ch',
+        hof=f'https://www.staemme.ch/page/hall-of-fame'
+    ),
+    tr=dict(
+        archive=f'https://www.klanlar.org/archive/tr',
+        hof=f'https://www.klanlar.org/page/hall-of-fame'
+    ),
+    ua=dict(
+        archive=f'https://www.voynaplemyon.com/uk-ua/archive/ru',
+        hof=f'https://www.voynaplemyon.com/uk-ua/page/hall-of-fame'
+    )
 )
 
 
@@ -95,7 +157,7 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
     check_folders_and_create_if_necessary(domain)
 
     for server_number in range(servers_from, servers_to + 1):
-        url = f'{base_urls[domain]}{server_number}/players{type}'
+        url = f'{base_urls[domain]["archive"]}{server_number}/players{type}'
 
         response = requests.get(url)
 
