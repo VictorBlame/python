@@ -12,7 +12,25 @@ RESULT_FOLDER = 'results'
 base_urls = dict(
     hu=f'https://www.klanhaboru.hu/archive/hu',
     en=f'https://www.tribalwars.net/en-dk/archive/en',
-    de=f'https://www.die-staemme.de/archive/de'
+    de=f'https://www.die-staemme.de/archive/de',
+    ae=f'https://www.tribalwars.ae/archive/ae',
+    cz=f'https://www.divokekmeny.cz/archive/cs',
+    nl=f'https://www.tribalwars.nl/archive/nl',
+    uk=f'https://www.tribalwars.co.uk/archive/uk',
+    us=f'https://www.tribalwars.us/archive/us',
+    fr=f'https://www.guerretribale.fr/archive/fr',
+    gr=f'https://www.fyletikesmaxes.gr/archive/gr',
+    it=f'https://www.tribals.it/archive/it',
+    pl=f'https://www.plemiona.pl/archive/pl',
+    br=f'https://www.tribalwars.com.br/archive/br',
+    pt=f'https://www.tribalwars.com.pt/archive/pt',
+    ro=f'https://www.triburile.ro/archive/ro',
+    ru=f'https://www.voynaplemyon.com/ru-ru/archive/ru',
+    sk=f'https://www.divoke-kmene.sk/archive/sk',
+    es=f'https://www.guerrastribales.es/archive/es',
+    ch=f'https://www.staemme.ch/archive/ch',
+    tr=f'https://www.klanlar.org/archive/tr',
+    ua=f'https://www.voynaplemyon.com/uk-ua/archive/ru'
 )
 
 
