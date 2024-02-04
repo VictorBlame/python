@@ -1,4 +1,5 @@
 import locale
+import os
 import time
 
 import requests
@@ -6,6 +7,7 @@ from bs4 import BeautifulSoup
 
 # Set the locale for formatting numbers with thousands separators
 locale.setlocale(locale.LC_ALL, '')
+RESULT_FOLDER = 'results'
 
 base_urls = dict(
     hu=f'https://www.klanhaboru.hu/archive/hu',
@@ -21,6 +23,15 @@ def get_sort_key(row_values, rankings_type):
         return int(row_values[3].replace('.', ''))
     else:
         return int(row_values[2].replace('.', ''))
+
+
+def check_folders_and_create_if_necessary(folder):
+    if not os.path.exists(RESULT_FOLDER):
+        os.makedirs(RESULT_FOLDER)
+    if not os.path.exists(f'{RESULT_FOLDER}/{folder}'):
+        os.makedirs(f'{RESULT_FOLDER}/{folder}')
+    else:
+        pass
 
 
 def format_numbers(row_values):
@@ -63,6 +74,8 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
     else:
         type = '/kill'
 
+    check_folders_and_create_if_necessary(domain)
+
     for server_number in range(servers_from, servers_to + 1):
         url = f'{base_urls[domain]}{server_number}/players{type}'
 
@@ -78,7 +91,7 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
     sorted_results = sorted(all_results, key=lambda sorting_field: get_sort_key(sorting_field[2], rankings_type),
                             reverse=True)
 
-    with open(f'result_{rankings_type}_{domain}.txt', 'w', encoding="utf-8") as file:
+    with open(f'{RESULT_FOLDER}/{domain}/result_{rankings_type}_{domain}.txt', 'w', encoding="utf-8") as file:
         for server_number, _, result in sorted_results:
             formatted_result = format_numbers(result)
             file.write(f'#{global_row_num} {domain.upper()}{server_number} {formatted_result}\n')
@@ -86,7 +99,7 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
     time.sleep(0.15)
 
 
-get_rankings_from_page('de', 'player_point', 1, 223, 50)
+get_rankings_from_page('hu', 'player_point', 1, 3, 50)
 # get_rankings_from_page('de', 'player_village', 1, 223, 50)
 # get_rankings_from_page('de', 'od', 1, 223, 20)
 # get_rankings_from_page('de', 'oda', 1, 223, 20)
