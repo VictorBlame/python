@@ -1,5 +1,6 @@
 import locale
 import os
+import re
 import time
 
 import requests
@@ -138,6 +139,27 @@ def url_scarper(response, domain, all_results, server_number, rankings_top):
             print(f'{domain.upper()}{server_number}: Table with class \'ranking-table\' not found on the page.')
 
 
+def hof_url_cleaner(url: str):
+    return re.sub('[^0-9]', '', url)
+
+
+def find_closed_servers(hof_url):
+    closed_servers = []
+    response = requests.get(hof_url)
+    html = response.text
+
+    soup = BeautifulSoup(html, 'html.parser')
+
+    inactive_li_elements = soup.find_all('li', class_='inactive')
+
+    for li_element in inactive_li_elements:
+        href = li_element.find('a')['href']
+        if not any(substring in href for substring in ['huc', 'hup']):
+            closed_servers.append(hof_url_cleaner(href))
+
+    return closed_servers
+
+
 def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, servers_to: int, rankings_top: int):
     all_results = []
     global_row_num = 1
@@ -155,6 +177,7 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
         type = '/kill'
 
     check_folders_and_create_if_necessary(domain)
+    find_closed_servers(base_urls[domain]['hof'])
 
     for server_number in range(servers_from, servers_to + 1):
         url = f'{base_urls[domain]["archive"]}{server_number}/players{type}'
