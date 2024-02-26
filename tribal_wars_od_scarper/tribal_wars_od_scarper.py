@@ -194,7 +194,8 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
     sorted_results = sorted(all_results, key=lambda sorting_field: get_sort_key(sorting_field[2], rankings_type),
                             reverse=True)
 
-    with open(f'{RESULT_FOLDER}/{domain}/result_{rankings_type}_{domain}.txt', 'w', encoding="utf-8") as file:
+    with open(f'{RESULT_FOLDER}/{domain}/result_{rankings_type}_{domain}_from_{servers_from}_to_{servers_to}.txt', 'w',
+              encoding="utf-8") as file:
         for server_number, _, result in sorted_results:
             formatted_result = format_numbers(result)
             file.write(f'#{global_row_num} {domain.upper()}{server_number} {formatted_result}\n')
@@ -202,9 +203,11 @@ def get_rankings_from_page(domain: str, rankings_type: str, servers_from: int, s
     time.sleep(0.15)
 
 
-get_rankings_from_page('hu', 'player_point', 1, 3, 50)
-# get_rankings_from_page('de', 'player_village', 1, 223, 50)
-# get_rankings_from_page('de', 'od', 1, 223, 20)
-# get_rankings_from_page('de', 'oda', 1, 223, 20)
-# get_rankings_from_page('de', 'odd', 1, 223, 20)
-# get_rankings_from_page('de', 'ods', 1, 223, 20)
+server_from_to = [71, 84]
+
+get_rankings_from_page('hu', 'player_point', server_from_to[0], server_from_to[1], 50)
+get_rankings_from_page('hu', 'player_village', server_from_to[0], server_from_to[1], 50)
+get_rankings_from_page('hu', 'od', server_from_to[0], server_from_to[1], 20)
+get_rankings_from_page('hu', 'oda', server_from_to[0], server_from_to[1], 20)
+get_rankings_from_page('hu', 'odd', server_from_to[0], server_from_to[1], 20)
+get_rankings_from_page('hu', 'ods', server_from_to[0], server_from_to[1], 20)
