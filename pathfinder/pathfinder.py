@@ -55,8 +55,8 @@ def path_builder(parent, minimum_node, path):
 
 
 def print_solution(distance, node_number, graph, start, file_name, parent):
-    minimum_path, minimum_node = sys.maxsize, sys.maxsize
-    occupied_counter, total_counter = 0, 0
+    minimum_path = minimum_node = sys.maxsize
+    occupied_counter = total_counter = 0
     optimal_path = []
     print("Starting node:", start)
     print("Parking nodes: ")
